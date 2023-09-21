@@ -1,0 +1,27 @@
+{
+  "name": "back-and-foodexplore",
+  "version": "1.0.0",
+  "description": "API made for Food Explore",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/serve.js",
+    "lint": "eslint src --ext .js --fix"
+  },
+  "keywords": [],
+  "author": "Dyonathas de Matos Teles",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^2.5.1",
+    "sqlite": "^5.0.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.1.0",
+    "eslint": "^8.49.0",
+    "nodemon": "^3.0.1"
+  }
+}

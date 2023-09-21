@@ -1,0 +1,6 @@
+{
+  "extends": "@rocketseat/eslint-config/node",
+  "rules": {
+    "eslint-disable": "@typescript-eslint/no-var-requires" 
+  }
+}
