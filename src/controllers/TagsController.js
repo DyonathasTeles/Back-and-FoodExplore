@@ -20,7 +20,6 @@ class UsersController {
 
     const checkEmailExist = await await knex("users").where({email})
     const user = await await knex("users").where({id: user_id})
-    console.log(user);
     
     if(!user.length) {
       throw new AppError("The user does not exist")

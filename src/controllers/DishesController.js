@@ -27,8 +27,6 @@ class DishesController {
     const {name, category, price, description, avatar, tags} = request.body
 
     const dish = await knex("dishes").where({id}).first()
-    console.log(dish);
-    
 
     if(!dish){
       throw new AppError(" dish not found ")
@@ -43,8 +41,6 @@ class DishesController {
       }
     })
 
-    console.log(tagsNames);
-
     await knex("dishes").where({id}).first().update({name, category, price, description, updated_at: knex.fn.now()})
     await knex("tags").insert(tagsNames)
 
@@ -58,15 +54,12 @@ class DishesController {
       let dishequery
 
       dishequery = await knex("dishes").orderBy("dishes.name")
-      console.log(dishequery);
-      console.log(search);
   
-
       if(search) {
 
         dishequery = await knex("dishes")
         .join("tags", "dishes.id", "=", "tags.dish_id")
-        .select("dishes.id as id","dishes.name", "tags.name as tag", "dishes.description",  "dishes.price" )
+        .select("dishes.id as id","dishes.name", "tags.name as tag", "dishes.description",  "dishes.price", "dishes.avatar" )
         .where("dishes.name", "like", `%${search}%`)
         .orWhere("tag", "like", `%${search}%`)
         .groupBy("dishes.id")

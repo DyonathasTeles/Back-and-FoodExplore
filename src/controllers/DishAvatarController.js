@@ -22,7 +22,6 @@ class DishAvatarController {
 
     const filename = await diskStorage.saveFile(avatarFilename)
     dish.avatar = filename
-    console.log(dish);
     
     await knex("dishes").where({id}).update({avatar : filename})
 

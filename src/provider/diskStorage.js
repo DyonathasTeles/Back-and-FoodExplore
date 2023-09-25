@@ -10,7 +10,6 @@ class DiskStorage {
     )
 
     return file
-    console.log(file);
   }
 
   async deleteFile(file) {
