@@ -52,7 +52,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   2. Acesse a pasta do projeto:
 
   ```
-  $ cd Back-and FoodExplore
+  $ cd Back-and-FoodExplore
   ```
 
   3. Instale as dependências:
