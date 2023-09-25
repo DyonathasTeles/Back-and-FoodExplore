@@ -1,14 +1,19 @@
 require("express-async-errors")
+require("dotenv/config")
 const database = require("./database/sqlite")
 const AppError = require("./utils/AppError")
+const uploadsConfig = require("./configs/upload")
 
-const Express = require('express')
-
+const express = require('express')
+const cors = require("cors")
 const routes = require("./routers")
 
 
-const app = Express()
-app.use(Express.json())
+const app = express()
+app.use(cors()) 
+app.use(express.json())
+
+app.use("/files", express.static(uploadsConfig.UPLOADS_FOLDER))
 
 app.use(routes)
 

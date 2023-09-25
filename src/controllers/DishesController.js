@@ -1,12 +1,13 @@
 const AppError = require("../utils/AppError")
 const knex = require("../database/knex")
+const DiskStorage = require("../provider/diskStorage")
 
 class DishesController {
   async create(request, response) {
-    const {name ,avatar, category, price, description, tags} = request.body
+    const {name , category, price, description, tags} = request.body
 
     const [dish_id]  = await knex("dishes").insert({
-      name, avatar, category, price, description,
+      name, category, price, description,
     }) 
 
     const tagsInsert = tags.map(name => {
@@ -18,7 +19,7 @@ class DishesController {
 
     await knex("tags").insert(tagsInsert)
 
-    return response.status(201).json()
+    return response.status(201).json({dish_id})
   }
 
   async update(request, response) {
@@ -33,8 +34,19 @@ class DishesController {
       throw new AppError(" dish not found ")
     }
 
-    await knex("dishes").where({id}).first().update({name, category, price, description, avatar, updated_at: knex.fn.now()})
-    await knex("tags").where({dish_id: id}).first().update({name: tags})
+    await knex("tags").where({dish_id: id}).delete()
+
+    const tagsNames = tags.map(tag => {
+      return {
+        dish_id: id,
+        name: tag
+      }
+    })
+
+    console.log(tagsNames);
+
+    await knex("dishes").where({id}).first().update({name, category, price, description, updated_at: knex.fn.now()})
+    await knex("tags").insert(tagsNames)
 
     response.json()
   }
@@ -54,8 +66,8 @@ class DishesController {
 
         dishequery = await knex("dishes")
         .join("tags", "dishes.id", "=", "tags.dish_id")
-        .select("dishes.id as id","dishes.name as dish", "tags.name as tag" )
-        .where("dish", "like", `%${search}%`)
+        .select("dishes.id as id","dishes.name", "tags.name as tag", "dishes.description",  "dishes.price" )
+        .where("dishes.name", "like", `%${search}%`)
         .orWhere("tag", "like", `%${search}%`)
         .groupBy("dishes.id")
       }
