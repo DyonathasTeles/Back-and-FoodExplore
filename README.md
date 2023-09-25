@@ -16,7 +16,7 @@ Aplicação para ser usada como cardápio digital ou menu interativo para um res
 <br>
 
 <p align="center">
-  <img alt="food explorer" src=".github/capa-project.png" width="100%">
+  <img alt="food explorer" src="./assets/Capa.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
