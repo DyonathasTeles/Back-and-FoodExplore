@@ -36,8 +36,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ##
 
 ## 💡 Utilização
-  Deploy: 
-  Deploy back-end: 
+  Deploy: https://main--dyonathasteles-foodexplorer.netlify.app/
+  Deploy back-end: https://foodexplorer-api-4k5p.onrender.com
 
   Você também pode executá-la em sua máquina localmente. Certifique-se de ter o Node.js e o npm instalados antes de prosseguir com as etapas abaixo:
 
